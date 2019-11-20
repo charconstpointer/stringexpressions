@@ -1,5 +1,6 @@
 ﻿using System;
 using R2D2.Interfaces;
+using R2D2.Parser;
 using Xunit;
 
 namespace R2D2.Tests

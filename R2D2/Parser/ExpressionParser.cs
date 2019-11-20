@@ -1,7 +1,8 @@
-﻿﻿using System;
+﻿using System;
 using R2D2.Interfaces;
+using R2D2.Nodes;
 
-namespace R2D2
+namespace R2D2.Parser
 {
     public class ExpressionParser
     {

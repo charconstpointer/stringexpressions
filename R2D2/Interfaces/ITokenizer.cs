@@ -1,4 +1,6 @@
-﻿﻿namespace R2D2.Interfaces
+﻿﻿using R2D2.Parser;
+
+ namespace R2D2.Interfaces
 {
     public interface ITokenizer
     {

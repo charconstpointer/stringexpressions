@@ -1,7 +1,7 @@
 ﻿using System;
 using R2D2.Interfaces;
 
-namespace R2D2
+namespace R2D2.Nodes
 {
     public class NodeBinary : INode
     {
