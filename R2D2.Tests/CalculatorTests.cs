@@ -16,7 +16,7 @@ namespace R2D2.Tests
         {
             var tokenizer = new Tokenizer(new ExpressionCursor(expression));
             var calculator = new ExpressionParser(tokenizer);
-            var expressionValue = calculator.Parse().Eval();
+            var expressionValue = calculator.Parse().Evaluate();
             Assert.Equal(expected, Math.Round(expressionValue, 6));
         }
     }

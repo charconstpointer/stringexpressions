@@ -9,6 +9,6 @@ namespace R2D2
             Value = value;
         }
         private double Value { get; }
-        public double Eval() => Value;
+        public double Evaluate() => Value;
     }
 }

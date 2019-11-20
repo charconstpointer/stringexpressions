@@ -15,6 +15,6 @@ namespace R2D2
             Right = right;
             Operation = operation;
         }
-        public double Eval() => Operation(Left.Eval(), Right.Eval());
+        public double Evaluate() => Operation(Left.Evaluate(), Right.Evaluate());
     }
 }

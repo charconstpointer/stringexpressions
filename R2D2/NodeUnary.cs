@@ -13,6 +13,6 @@ namespace R2D2
 
         private INode Right { get; }
         private Func<double,double> Operation { get; }
-        public double Eval() => Operation(Right.Eval());
+        public double Evaluate() => Operation(Right.Evaluate());
     }
 }
