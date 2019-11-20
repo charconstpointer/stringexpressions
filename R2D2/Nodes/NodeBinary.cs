@@ -3,6 +3,9 @@ using R2D2.Interfaces;
 
 namespace R2D2.Nodes
 {
+    /// <summary>
+    /// Represents operation on two operands 
+    /// </summary>
     public class NodeBinary : INode
     {
         private INode Left { get; }

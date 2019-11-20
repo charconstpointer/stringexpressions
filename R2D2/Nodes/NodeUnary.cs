@@ -3,6 +3,9 @@ using R2D2.Interfaces;
 
 namespace R2D2.Nodes
 {
+    /// <summary>
+    /// Represents negative sign operation
+    /// </summary>
     internal class NodeUnary : INode
     {
         public NodeUnary(INode right, Func<double, double> operation)
