@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using R2D2.Calculator;
 using R2D2.Interfaces;
 using R2D2.Parser;
 using Xunit;
@@ -13,12 +15,54 @@ namespace R2D2.Tests
         [InlineData("4+5/2-1", 5.5)]
         [InlineData("13*13-13+13/14+14/15*15*15", 366.928571)]
 
-        public void ExpressionParser_ValidExpression_GivesCorrectResult(string expression, double expected)
+        public void ExpressionCalculator_ValidExpression_GivesCorrectResult(string expression, double expected)
         {
-            var tokenizer = new Tokenizer(new ExpressionCursor(expression));
-            var calculator = new ExpressionParser(tokenizer);
-            var expressionValue = calculator.Parse().Evaluate();
+            var calculator = ExpressionCalculator.Create();
+            var expressionValue = calculator.Evaluate(expression);
             Assert.Equal(expected, Math.Round(expressionValue, 6));
+        }
+        [Theory]
+        [InlineData("4+5*2", 14.0)]
+        [InlineData("4+5/2", 6.5)]
+        [InlineData("4+5/2-1", 5.5)]
+        [InlineData("13*13-13+13/14+14/15*15*15", 366.928571)]
+        public void DataTableExpressionCalculator_ValidExpression_GivesCorrectResult(string expression, double expected)
+        {
+            var calculator = DatatableExpressionCalculator.Create();
+            var expressionValue = calculator.Evaluate(expression);
+            Assert.Equal(expected, Math.Round(expressionValue, 6));
+        }
+        
+        [Theory]
+        [InlineData("a+c*13")]
+        public void DataTableExpressionCalculator_InvalidExpression_ThrowsException(string expression)
+        {
+            var calculator = DatatableExpressionCalculator.Create();
+            Assert.Throws<EvaluateException>(() => calculator.Evaluate(expression));
+        }
+        
+        [Theory]
+        [InlineData(" + *")]
+        public void DataTableExpressionCalculator_IncorrectSyntax_ThrowsException(string expression)
+        {
+            var calculator = DatatableExpressionCalculator.Create();
+            Assert.Throws<SyntaxErrorException>(() => calculator.Evaluate(expression));
+        }
+        
+        [Theory]
+        [InlineData("a+c*13")]
+        public void ExpressionCalculator_InvalidExpression_ThrowsException(string expression)
+        {
+            var calculator = DatatableExpressionCalculator.Create();
+            Assert.Throws<EvaluateException>(() => calculator.Evaluate(expression));
+        }
+        
+        [Theory]
+        [InlineData(" + * ")]
+        public void ExpressionCalculator_IncorrectSyntax_ThrowsException(string expression)
+        {
+            var calculator = DatatableExpressionCalculator.Create();
+            Assert.Throws<SyntaxErrorException>(() => calculator.Evaluate(expression));
         }
     }
 }

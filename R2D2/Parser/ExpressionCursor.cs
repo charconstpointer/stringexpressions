@@ -30,15 +30,5 @@ namespace R2D2.Parser
         {
             return new ExpressionCursor(expression);
         }
-
-        public int Read(ReadOnlySpan<char> expression)
-        {
-            if (_position < expression.Length)
-            {
-                return expression[_position++];
-            }
-
-            return -1;
-        }
     }
 }

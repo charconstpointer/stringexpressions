@@ -5,12 +5,14 @@
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             const string expression = "10 / 40 * 3";
             var calculator = ExpressionCalculator.Create();
+            var dataTableCalculator = DatatableExpressionCalculator.Create();
             var result = calculator.Evaluate(expression);
-            Console.WriteLine(result);
+            var anotherResult = dataTableCalculator.Evaluate(expression);
+            Console.WriteLine($"{result}, {anotherResult}");
         }
     }
 }
