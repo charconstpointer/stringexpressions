@@ -3,9 +3,9 @@
 
  namespace R2D2
 {
-    class Program
+    internal static class Program
     {
-        static void Main()
+        private static void Main()
         {
             const string expression = "10 / 40 * 3";
             var calculator = ExpressionCalculator.Create();
