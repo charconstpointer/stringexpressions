@@ -28,6 +28,12 @@ namespace R2D2.Parser
             _currentChar = character < 0 ? '\0' : (char) character;
         }
 
+        public static ITokenizer Create(string expression)
+        {
+            var expressionCursor = ExpressionCursor.Create(expression);
+            return new Tokenizer(expressionCursor);
+        }
+        
         public void NextToken()
         {
             while (char.IsWhiteSpace(_currentChar))

@@ -26,6 +26,11 @@ namespace R2D2.Parser
             return -1;
         }
 
+        public static IExpressionCursor Create(string expression)
+        {
+            return new ExpressionCursor(expression);
+        }
+
         public int Read(ReadOnlySpan<char> expression)
         {
             if (_position < expression.Length)

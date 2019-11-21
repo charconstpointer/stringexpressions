@@ -7,9 +7,9 @@ namespace R2D2.Calculator
     {
         private readonly IExpressionParser _parser;
 
-        public ExpressionCalculator()
+        private ExpressionCalculator()
         {
-            _parser = ParserFactory.Create();
+            _parser = ExpressionParser.Create();
         }
 
 
@@ -17,6 +17,11 @@ namespace R2D2.Calculator
         {
             var expressionTree = _parser.Parse(expression);
             return expressionTree.Evaluate();
+        }
+
+        public static IExpressionCalculator Create()
+        {
+            return new ExpressionCalculator();
         }
     }
 }

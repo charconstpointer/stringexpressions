@@ -8,19 +8,20 @@ namespace R2D2.Parser
     {
         INode Parse(string expression);
     }
+
     public class ExpressionParser : IExpressionParser
     {
         private ITokenizer _tokenizer;
 
-        public ExpressionParser()
+        private ExpressionParser()
         {
-            
         }
+
+        public static IExpressionParser Create() => new ExpressionParser();
 
         public INode Parse(string expression)
         {
-            var expressionCursor = new ExpressionCursor(expression);
-            _tokenizer = new Tokenizer(expressionCursor);
+            _tokenizer = Tokenizer.Create(expression);
             var root = ParseAddSubtract();
 
             if (_tokenizer.Token != Token.Eof)
