@@ -4,23 +4,29 @@ using R2D2.Nodes;
 
 namespace R2D2.Parser
 {
-    public class ExpressionParser
+    public interface IExpressionParser
     {
-        private readonly ITokenizer _tokenizer;
+        INode Parse(string expression);
+    }
+    public class ExpressionParser : IExpressionParser
+    {
+        private ITokenizer _tokenizer;
 
-        public ExpressionParser(ITokenizer tokenizer)
+        public ExpressionParser()
         {
-            _tokenizer = tokenizer;
+            
         }
 
-        public INode Parse()
+        public INode Parse(string expression)
         {
-            var expression = ParseAddSubtract();
+            var expressionCursor = new ExpressionCursor(expression);
+            _tokenizer = new Tokenizer(expressionCursor);
+            var root = ParseAddSubtract();
 
             if (_tokenizer.Token != Token.Eof)
                 throw new Exception("Unexpected characters at end of expression");
 
-            return expression;
+            return root;
         }
 
         private INode ParseMultiplyDivide()
