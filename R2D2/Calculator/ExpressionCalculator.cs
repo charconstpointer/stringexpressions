@@ -1,4 +1,5 @@
-﻿using R2D2.Interfaces;
+﻿using System;
+using R2D2.Interfaces;
 using R2D2.Parser;
 
 namespace R2D2.Calculator
@@ -7,21 +8,15 @@ namespace R2D2.Calculator
     {
         private readonly IExpressionParser _parser;
 
-        private ExpressionCalculator()
+        public ExpressionCalculator(IExpressionParser parser)
         {
-            _parser = ExpressionParser.Create();
+            _parser = parser;
         }
-
 
         public double Evaluate(string expression)
         {
             var expressionTree = _parser.Parse(expression);
             return expressionTree.Evaluate();
-        }
-
-        public static IExpressionCalculator Create()
-        {
-            return new ExpressionCalculator();
         }
     }
 }

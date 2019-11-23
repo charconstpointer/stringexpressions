@@ -5,4 +5,13 @@
         <TargetFramework>netcoreapp3.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="7.0.0" />
+      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.0-preview3.19553.2" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0-preview3.19553.2" />
+      <PackageReference Include="Moq" Version="4.13.1" />
+      <PackageReference Include="System.Runtime.Caching" Version="4.7.0-preview3.19551.4" />
+    </ItemGroup>
+
 </Project>
