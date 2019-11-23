@@ -13,10 +13,6 @@ namespace R2D2.Parser
     {
         private ITokenizer _tokenizer;
 
-        private ExpressionParser()
-        {
-        }
-
         public static IExpressionParser Create() => new ExpressionParser();
 
         public INode Parse(string expression)

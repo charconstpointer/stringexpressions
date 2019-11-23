@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.IO;
+using Moq;
 using R2D2.Calculator;
 using R2D2.Interfaces;
 using R2D2.Parser;
@@ -17,7 +19,8 @@ namespace R2D2.Tests
 
         public void ExpressionCalculator_ValidExpression_GivesCorrectResult(string expression, double expected)
         {
-            var calculator = ExpressionCalculator.Create();
+            var expressionParser = new ExpressionParser();
+            var calculator = new ExpressionCalculator(expressionParser);
             var expressionValue = calculator.Evaluate(expression);
             Assert.Equal(expected, Math.Round(expressionValue, 6));
         }
@@ -53,16 +56,18 @@ namespace R2D2.Tests
         [InlineData("a+c*13")]
         public void ExpressionCalculator_InvalidExpression_ThrowsException(string expression)
         {
-            var calculator = DatatableExpressionCalculator.Create();
-            Assert.Throws<EvaluateException>(() => calculator.Evaluate(expression));
+            var expressionParser = new ExpressionParser();
+            var calculator = new ExpressionCalculator(expressionParser);
+            Assert.Throws<InvalidDataException>(() => calculator.Evaluate(expression));
         }
         
         [Theory]
         [InlineData(" + * ")]
         public void ExpressionCalculator_IncorrectSyntax_ThrowsException(string expression)
         {
-            var calculator = DatatableExpressionCalculator.Create();
-            Assert.Throws<SyntaxErrorException>(() => calculator.Evaluate(expression));
+            var expressionParser = new ExpressionParser();
+            var calculator = new ExpressionCalculator(expressionParser);
+            Assert.Throws<Exception>(() => calculator.Evaluate(expression));
         }
     }
 }
