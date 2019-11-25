@@ -12,7 +12,7 @@ namespace R2D2.Parser
             
             _cursor = cursor;
             NextChar();
-            NextToken();
+            MoveNext();
         }
 
         private readonly IExpressionCursor _cursor;
@@ -34,7 +34,7 @@ namespace R2D2.Parser
             return new Tokenizer(expressionCursor);
         }
         
-        public void NextToken()
+        public void MoveNext()
         {
             while (char.IsWhiteSpace(_currentChar))
             {

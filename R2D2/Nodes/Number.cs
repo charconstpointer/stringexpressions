@@ -5,9 +5,9 @@ namespace R2D2.Nodes
     /// <summary>
     /// Represents a numeric value
     /// </summary>
-    public class NodeNumber : INode
+    public class Number : INode
     {
-        public NodeNumber(double value)
+        public Number(double value)
         {
             Value = value;
         }

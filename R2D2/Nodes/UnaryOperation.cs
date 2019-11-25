@@ -6,9 +6,9 @@ namespace R2D2.Nodes
     /// <summary>
     /// Represents negative sign operation
     /// </summary>
-    internal class NodeUnary : INode
+    internal class UnaryOperation : INode
     {
-        public NodeUnary(INode right, Func<double, double> operation)
+        public UnaryOperation(INode right, Func<double, double> operation)
         {
             Right = right;
             Operation = operation;

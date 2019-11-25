@@ -4,7 +4,7 @@
 {
     public interface ITokenizer
     {
-        void NextToken();
+        void MoveNext();
         public Token Token { get; }
         public double Number { get; }
     }

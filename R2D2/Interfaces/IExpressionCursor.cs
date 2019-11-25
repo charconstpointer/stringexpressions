@@ -3,7 +3,7 @@
 namespace R2D2.Interfaces
 {
     /// <summary>
-    /// Allows to walk over expression
+    /// Allows to walk over an expression
     /// </summary>
     public interface IExpressionCursor
     {

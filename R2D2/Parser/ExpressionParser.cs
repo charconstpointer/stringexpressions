@@ -39,9 +39,9 @@ namespace R2D2.Parser
                 };
 
                 if (operation == null) return left;
-                _tokenizer.NextToken();
+                _tokenizer.MoveNext();
                 var right = ParseUnary();
-                left = new NodeBinary(left, right, operation);
+                left = new BinaryOperation(left, right, operation);
             }
         }
 
@@ -50,13 +50,13 @@ namespace R2D2.Parser
             switch (_tokenizer.Token)
             {
                 case Token.Add:
-                    _tokenizer.NextToken();
+                    _tokenizer.MoveNext();
                     return ParseUnary();
                 case Token.Subtract:
                 {
-                    _tokenizer.NextToken();
+                    _tokenizer.MoveNext();
                     var right = ParseUnary();
-                    return new NodeUnary(right, a => -a);
+                    return new UnaryOperation(right, a => -a);
                 }
                 default:
                     return ParseLeaf();
@@ -77,17 +77,17 @@ namespace R2D2.Parser
                 };
 
                 if (operation == null) return left;
-                _tokenizer.NextToken();
+                _tokenizer.MoveNext();
                 var right = ParseMultiplyDivide();
-                left = new NodeBinary(left, right, operation);
+                left = new BinaryOperation(left, right, operation);
             }
         }
 
         private INode ParseLeaf()
         {
             if (_tokenizer.Token != Token.Number) throw new Exception($"Unexpect token: {_tokenizer.Token}");
-            var node = new NodeNumber(_tokenizer.Number);
-            _tokenizer.NextToken();
+            var node = new Number(_tokenizer.Number);
+            _tokenizer.MoveNext();
             return node;
         }
     }
