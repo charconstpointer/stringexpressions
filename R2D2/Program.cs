@@ -16,7 +16,6 @@ namespace R2D2
             services.AddTransient<Startup>();
             services.AddTransient<IExpressionParser, ExpressionParser>();
             services.AddTransient<IExpressionCalculator, ExpressionCalculator>();
-            services.AddMemoryCache();
             services.AddMediatR(Assembly.GetExecutingAssembly());
             return services;
         }
