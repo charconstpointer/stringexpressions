@@ -4,7 +4,7 @@ using R2D2.Interfaces;
 namespace R2D2.Nodes
 {
     /// <summary>
-    /// Represents negative sign operation
+    /// Represents one operand operation
     /// </summary>
     internal class UnaryOperation : INode
     {

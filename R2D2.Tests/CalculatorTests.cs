@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.IO;
-using Moq;
 using R2D2.Calculator;
-using R2D2.Interfaces;
 using R2D2.Parser;
 using Xunit;
 

@@ -4,7 +4,7 @@ using R2D2.Interfaces;
 namespace R2D2.Nodes
 {
     /// <summary>
-    /// Represents operation on two operands 
+    /// Represents two operands operation
     /// </summary>
     public class BinaryOperation : INode
     {
