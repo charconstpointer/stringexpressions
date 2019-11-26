@@ -21,7 +21,7 @@ namespace R2D2.Parser
             var root = ParseAddSubtract();
 
             if (_tokenizer.Token != Token.Eof)
-                throw new Exception("Unexpected characters at end of expression");
+                throw new Exception("Invalid expression");
 
             return root;
         }
@@ -59,7 +59,7 @@ namespace R2D2.Parser
                     return new UnaryOperation(right, a => -a);
                 }
                 default:
-                    return ParseLeaf();
+                    return ParseToken();
             }
         }
 
@@ -83,7 +83,7 @@ namespace R2D2.Parser
             }
         }
 
-        private INode ParseLeaf()
+        private INode ParseToken()
         {
             if (_tokenizer.Token != Token.Number) throw new Exception($"Unexpect token: {_tokenizer.Token}");
             var node = new Number(_tokenizer.Number);
