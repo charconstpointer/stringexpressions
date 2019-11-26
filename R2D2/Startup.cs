@@ -17,7 +17,7 @@ namespace R2D2
         public async Task Run()
         {
             const string expression = "10 / 40 * 3";
-            var result = await _mediator.Send(new EvaluateExpressionCommand {Expression = expression});
+            var result = await _mediator.Send(new EvaluateExpression {Expression = expression});
             Console.WriteLine(result);
         }
     }

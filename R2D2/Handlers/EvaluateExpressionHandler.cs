@@ -8,7 +8,7 @@ using R2D2.Interfaces;
 
 namespace R2D2.Handlers
 {
-    public class EvaluateExpressionHandler : IRequestHandler<EvaluateExpressionCommand, double>
+    public class EvaluateExpressionHandler : IRequestHandler<EvaluateExpression, double>
     {
         private readonly IExpressionCalculator _calculator;
         private readonly IMemoryCache _cache;
@@ -19,7 +19,7 @@ namespace R2D2.Handlers
             _cache = cache;
         }
 
-        public Task<double> Handle(EvaluateExpressionCommand request, CancellationToken cancellationToken)
+        public Task<double> Handle(EvaluateExpression request, CancellationToken cancellationToken)
         {
             if (_cache.TryGetValue(request.Expression, out var cachedValue))
             {
